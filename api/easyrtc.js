@@ -3180,20 +3180,32 @@ module.exports = {
               this.src = '';
               return undefined;
             }
-            this.src = URL.createObjectURL(stream);
+            try {
+              this.srcObject = stream;
+            } catch (error) {
+              this.src = URL.createObjectURL(stream);
+            }
             // We need to recreate the blob url when a track is added or
             // removed. Doing it manually since we want to avoid a recursion.
             stream.addEventListener('addtrack', function() {
               if (self.src) {
                 URL.revokeObjectURL(self.src);
               }
-              self.src = URL.createObjectURL(stream);
+              try {
+                self.srcObject = stream;
+              } catch (error) {
+                self.src = URL.createObjectURL(stream);
+              }
             });
             stream.addEventListener('removetrack', function() {
               if (self.src) {
                 URL.revokeObjectURL(self.src);
               }
-              self.src = URL.createObjectURL(stream);
+              try {
+                self.srcObject = stream;
+              } catch (error) {
+                self.src = URL.createObjectURL(stream);
+              }
             });
           }
         });
@@ -7553,7 +7565,11 @@ var Easyrtc = function() {
             if (typeof element.srcObject !== 'undefined') {
                 element.srcObject = stream;
             } else if (typeof element.src !== 'undefined') {
-                element.src = self.createObjectURL(stream);
+                try {
+                    element.srcObject = stream;
+                } catch (error) {
+                    element.src = self.createObjectURL(stream);
+                }
             } else if (typeof element.mozSrcObject !== 'undefined') {
                 element.mozSrcObject = self.createObjectURL(stream);
             }
