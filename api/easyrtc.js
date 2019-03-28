@@ -2580,7 +2580,7 @@ SDPUtils.getKind = function(mediaSection) {
 };
 
 SDPUtils.isRejected = function(mediaSection) {
-  return mediaSection.split(' ', 2)[1] === '0';
+  Fection.split(' ', 2)[1] === '0';
 };
 
 SDPUtils.parseMLine = function(mediaSection) {
@@ -7078,8 +7078,7 @@ var Easyrtc = function() {
     this.createObjectURL = function(mediaStream) {
         var errMessage;
         if (window.URL && window.URL.createObjectURL) {
-            //return window.URL.createObjectURL(mediaStream);
-          return mediaStream;
+          return window.URL.createObjectURL(mediaStream);
         }
         else if (window.webkitURL && window.webkitURL.createObjectURL) {
             return window.webkit.createObjectURL(mediaStream);
