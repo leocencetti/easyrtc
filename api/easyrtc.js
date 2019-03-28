@@ -7066,7 +7066,8 @@ var Easyrtc = function() {
     this.createObjectURL = function(mediaStream) {
         var errMessage;
         if (window.URL && window.URL.createObjectURL) {
-            return window.URL.createObjectURL(mediaStream);
+            //return window.URL.createObjectURL(mediaStream);
+          return mediaStream;
         }
         else if (window.webkitURL && window.webkitURL.createObjectURL) {
             return window.webkit.createObjectURL(mediaStream);
