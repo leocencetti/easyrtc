@@ -2580,7 +2580,7 @@ SDPUtils.getKind = function(mediaSection) {
 };
 
 SDPUtils.isRejected = function(mediaSection) {
-  Fection.split(' ', 2)[1] === '0';
+  return mediaSection.split(' ', 2)[1] === '0';
 };
 
 SDPUtils.parseMLine = function(mediaSection) {
@@ -7078,7 +7078,7 @@ var Easyrtc = function() {
     this.createObjectURL = function(mediaStream) {
         var errMessage;
         if (window.URL && window.URL.createObjectURL) {
-          return window.URL.createObjectURL(mediaStream);
+            return window.URL.createObjectURL(mediaStream);
         }
         else if (window.webkitURL && window.webkitURL.createObjectURL) {
             return window.webkit.createObjectURL(mediaStream);
@@ -7564,11 +7564,7 @@ var Easyrtc = function() {
             if (typeof element.srcObject !== 'undefined') {
                 element.srcObject = stream;
             } else if (typeof element.src !== 'undefined') {
-                try {
-                    element.srcObject = stream;
-                } catch (error) {
-                    element.src = self.createObjectURL(stream);
-                }
+                element.src = self.createObjectURL(stream);
             } else if (typeof element.mozSrcObject !== 'undefined') {
                 element.mozSrcObject = self.createObjectURL(stream);
             }
