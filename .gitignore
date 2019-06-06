@@ -170,7 +170,6 @@ pip-log.txt
 # Node.js
 #########
 node_modules
-.git
 
 #########
 # EasyRTC
